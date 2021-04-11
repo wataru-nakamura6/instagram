@@ -13,6 +13,11 @@
 		EA15E6A1262044F20014A142 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA15E69F262044F20014A142 /* Main.storyboard */; };
 		EA15E6A3262044F30014A142 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA15E6A2262044F30014A142 /* Assets.xcassets */; };
 		EA15E6A6262044F30014A142 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA15E6A4262044F30014A142 /* LaunchScreen.storyboard */; };
+		EA15E6B82622BB010014A142 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15E6B72622BB010014A142 /* LoginViewController.swift */; };
+		EA15E6BB2622BB4C0014A142 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15E6BA2622BB4C0014A142 /* HomeViewController.swift */; };
+		EA15E6BE2622BB620014A142 /* ImageSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15E6BD2622BB620014A142 /* ImageSelectViewController.swift */; };
+		EA15E6C12622BB700014A142 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15E6C02622BB700014A142 /* PostViewController.swift */; };
+		EA15E6C42622BB820014A142 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15E6C32622BB820014A142 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		EA15E6A2262044F30014A142 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA15E6A5262044F30014A142 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA15E6A7262044F30014A142 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA15E6B72622BB010014A142 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EA15E6BA2622BB4C0014A142 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EA15E6BD2622BB620014A142 /* ImageSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectViewController.swift; sourceTree = "<group>"; };
+		EA15E6C02622BB700014A142 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		EA15E6C32622BB820014A142 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +69,11 @@
 				EA15E699262044F20014A142 /* AppDelegate.swift */,
 				EA15E69B262044F20014A142 /* SceneDelegate.swift */,
 				EA15E69D262044F20014A142 /* ViewController.swift */,
+				EA15E6C32622BB820014A142 /* SettingViewController.swift */,
+				EA15E6C02622BB700014A142 /* PostViewController.swift */,
+				EA15E6BD2622BB620014A142 /* ImageSelectViewController.swift */,
+				EA15E6BA2622BB4C0014A142 /* HomeViewController.swift */,
+				EA15E6B72622BB010014A142 /* LoginViewController.swift */,
 				EA15E69F262044F20014A142 /* Main.storyboard */,
 				EA15E6A2262044F30014A142 /* Assets.xcassets */,
 				EA15E6A4262044F30014A142 /* LaunchScreen.storyboard */,
@@ -137,6 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA15E6BE2622BB620014A142 /* ImageSelectViewController.swift in Sources */,
+				EA15E6BB2622BB4C0014A142 /* HomeViewController.swift in Sources */,
+				EA15E6C12622BB700014A142 /* PostViewController.swift in Sources */,
+				EA15E6C42622BB820014A142 /* SettingViewController.swift in Sources */,
+				EA15E6B82622BB010014A142 /* LoginViewController.swift in Sources */,
 				EA15E69E262044F20014A142 /* ViewController.swift in Sources */,
 				EA15E69A262044F20014A142 /* AppDelegate.swift in Sources */,
 				EA15E69C262044F20014A142 /* SceneDelegate.swift in Sources */,
@@ -296,7 +316,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.wataru.nakamura.Instagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -315,7 +335,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.wataru.nakamura.Instagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
