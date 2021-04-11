@@ -93,11 +93,26 @@
                     <view key="view" contentMode="scaleToFill" id="TKh-Qy-Lcr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LyD-hu-qTc">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="kdx-2D-u6m"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LyD-hu-qTc" firstAttribute="leading" secondItem="kdx-2D-u6m" secondAttribute="leading" id="0eX-Ub-PfY"/>
+                            <constraint firstItem="kdx-2D-u6m" firstAttribute="bottom" secondItem="LyD-hu-qTc" secondAttribute="bottom" id="6em-h8-frT"/>
+                            <constraint firstItem="kdx-2D-u6m" firstAttribute="trailing" secondItem="LyD-hu-qTc" secondAttribute="trailing" id="8Sh-Ng-2S7"/>
+                            <constraint firstItem="LyD-hu-qTc" firstAttribute="top" secondItem="kdx-2D-u6m" secondAttribute="top" id="cgy-7T-Wua"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="ホーム" image="home" id="whT-W8-TiZ"/>
                     <navigationItem key="navigationItem" id="n4v-r6-ND8"/>
+                    <connections>
+                        <outlet property="tableView" destination="LyD-hu-qTc" id="dwz-Ck-Hdz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Yk-PV-wc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -166,9 +181,58 @@
                     <view key="view" contentMode="scaleToFill" id="nB7-oI-JZj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ko8-Gu-jeo">
+                                <rect key="frame" x="10" y="64" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="2a6-51-zfA"/>
+                                    <constraint firstAttribute="width" constant="120" id="V0y-Sa-f6h"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="キャプション" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-sB-dur">
+                                <rect key="frame" x="140" y="150" width="264" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xb4-hc-fJs">
+                                <rect key="frame" x="57" y="204" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="CH2-eg-ePQ"/>
+                                </constraints>
+                                <state key="normal" title="投稿" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="handlePostButton:" destination="HrU-Om-ALO" eventType="touchUpInside" id="60F-tK-FG1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ml7-ZE-EXf">
+                                <rect key="frame" x="57" y="254" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="iCL-UK-wpM"/>
+                                </constraints>
+                                <state key="normal" title="キャンセル" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="handleCancelButton:" destination="HrU-Om-ALO" eventType="touchUpInside" id="xX2-HC-4lt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="MGK-26-Rez"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ml7-ZE-EXf" firstAttribute="centerX" secondItem="nB7-oI-JZj" secondAttribute="centerX" id="A9a-Ba-NXu"/>
+                            <constraint firstItem="Ko8-Gu-jeo" firstAttribute="top" secondItem="MGK-26-Rez" secondAttribute="top" constant="20" id="Ard-UJ-7G7"/>
+                            <constraint firstItem="PfW-sB-dur" firstAttribute="bottom" secondItem="Ko8-Gu-jeo" secondAttribute="bottom" id="C5F-5E-CPB"/>
+                            <constraint firstItem="Xb4-hc-fJs" firstAttribute="top" secondItem="PfW-sB-dur" secondAttribute="bottom" constant="20" id="Ejn-wO-MYO"/>
+                            <constraint firstItem="Ko8-Gu-jeo" firstAttribute="leading" secondItem="MGK-26-Rez" secondAttribute="leading" constant="10" id="GT0-ni-mZI"/>
+                            <constraint firstItem="Xb4-hc-fJs" firstAttribute="centerX" secondItem="nB7-oI-JZj" secondAttribute="centerX" id="Ya4-0Z-uqX"/>
+                            <constraint firstItem="ml7-ZE-EXf" firstAttribute="top" secondItem="Xb4-hc-fJs" secondAttribute="bottom" constant="10" id="fnH-Vu-I9g"/>
+                            <constraint firstItem="PfW-sB-dur" firstAttribute="leading" secondItem="Ko8-Gu-jeo" secondAttribute="trailing" constant="10" id="m3r-B9-KsU"/>
+                            <constraint firstItem="MGK-26-Rez" firstAttribute="trailing" secondItem="PfW-sB-dur" secondAttribute="trailing" constant="10" id="tYD-5i-qv6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="Ko8-Gu-jeo" id="U4S-j4-tcz"/>
+                        <outlet property="textField" destination="PfW-sB-dur" id="AJf-ul-JvO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAH-I6-HYY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
