@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="482" id="KGk-i7-Jjw" customClass="PostTableViewCell" customModule="Instagram" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="482" id="KGk-i7-Jjw" customClass="PostTableViewCell" customModule="Instagram" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="373" height="482"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uit-Tj-jNZ">
-                        <rect key="frame" x="130" y="373.5" width="213" height="21"/>
+                        <rect key="frame" x="180" y="373.5" width="163" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -53,6 +53,17 @@
                         </constraints>
                         <state key="normal" title="Button" image="like_none"/>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZX7-zt-eZP">
+                        <rect key="frame" x="130" y="364" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="qf9-c5-yYR"/>
+                            <constraint firstAttribute="width" secondItem="ZX7-zt-eZP" secondAttribute="height" multiplier="1:1" id="sSN-u7-Psj"/>
+                            <constraint firstAttribute="height" constant="40" id="xi7-7D-fBw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button" image="pencil" catalog="system"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="9p6-cU-dGR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="2Kr-pU-rGq"/>
@@ -60,19 +71,22 @@
                     <constraint firstAttribute="trailingMargin" secondItem="uit-Tj-jNZ" secondAttribute="trailing" constant="10" id="ALK-OO-aKP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Rcw-Y9-dGP" secondAttribute="trailing" id="CLO-fE-9Fw"/>
                     <constraint firstItem="Ftg-gg-8YW" firstAttribute="top" secondItem="Rcw-Y9-dGP" secondAttribute="bottom" constant="10" id="CgJ-4e-syh"/>
-                    <constraint firstItem="uit-Tj-jNZ" firstAttribute="leading" secondItem="YHk-HW-QZT" secondAttribute="trailing" constant="10" id="FMV-l3-85u"/>
                     <constraint firstItem="YHk-HW-QZT" firstAttribute="centerY" secondItem="Ftg-gg-8YW" secondAttribute="centerY" id="K0G-rj-xgC"/>
                     <constraint firstItem="Ftg-gg-8YW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Pgx-ps-EKY"/>
                     <constraint firstItem="Rcw-Y9-dGP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Qjs-4A-gqJ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="9p6-cU-dGR" secondAttribute="bottom" constant="10" id="StY-9v-anb"/>
                     <constraint firstItem="Rcw-Y9-dGP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="boX-nm-gpO"/>
+                    <constraint firstItem="ZX7-zt-eZP" firstAttribute="top" secondItem="Rcw-Y9-dGP" secondAttribute="bottom" constant="10" id="cwM-hz-A25"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9p6-cU-dGR" secondAttribute="trailing" constant="10" id="eOz-QP-xXO"/>
                     <constraint firstItem="YHk-HW-QZT" firstAttribute="leading" secondItem="Ftg-gg-8YW" secondAttribute="trailing" constant="10" id="nQq-h7-j2r"/>
+                    <constraint firstItem="ZX7-zt-eZP" firstAttribute="leading" secondItem="YHk-HW-QZT" secondAttribute="trailing" constant="10" id="oLr-jb-lE4"/>
+                    <constraint firstItem="uit-Tj-jNZ" firstAttribute="leading" secondItem="ZX7-zt-eZP" secondAttribute="trailing" constant="10" id="tc0-Ei-HPN"/>
                     <constraint firstItem="uit-Tj-jNZ" firstAttribute="centerY" secondItem="Ftg-gg-8YW" secondAttribute="centerY" id="tqp-ns-I2P"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="CommentButton" destination="ZX7-zt-eZP" id="Prh-Jr-Ks4"/>
                 <outlet property="captionLabel" destination="9p6-cU-dGR" id="bTh-Wy-yC7"/>
                 <outlet property="dateLabel" destination="uit-Tj-jNZ" id="n6S-GR-oKN"/>
                 <outlet property="likeButton" destination="Ftg-gg-8YW" id="eDv-z1-gyI"/>
@@ -84,5 +98,6 @@
     </objects>
     <resources>
         <image name="like_none" width="40" height="40"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
     </resources>
 </document>

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseUI
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,12 +23,49 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
         cell.setPostData(postArray[indexPath.row])
         // セル内のボタンのアクションをソースコードで設定する
-        cell.likeButton.addTarget(self, action:#selector(handleButton(_:forEvent:)), for: .touchUpInside)
-
+        cell.likeButton.addTarget(self, action:#selector(LikeButton(_:forEvent:)), for: .touchUpInside)
+        cell.CommentButton.addTarget(self, action:#selector(commentButton(_:forEvent:)), for: .touchUpInside)
         return cell
     }
     
-    @objc func handleButton(_ sender: UIButton, forEvent event: UIEvent) {
+    @objc func commentButton(_ sender: UIButton, forEvent event: UIEvent) {
+        print("DEBUG_PRINT: commentボタンがタップされました。")
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        // 配列からタップされたインデックスのデータを取り出す
+        let postData = postArray[indexPath!.row]
+        
+        let Comment = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
+        self.present(Comment, animated: true, completion: nil)
+        
+        Comment.CAPTIONLABEL.text = "\(postData.name!) : \(postData.caption!)"
+        
+        Comment.DATELABEL.text = ""
+        if let date = postData.date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let dateString = formatter.string(from: date)
+            Comment.DATELABEL.text = dateString
+        }
+        
+        Comment.POSTIMAGEVIEW.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        let imageRef = Storage.storage().reference().child(Const.ImagePath).child(postData.id + ".jpg")
+        Comment.POSTIMAGEVIEW.sd_setImage(with: imageRef)
+
+        let likeNumber = postData.likes.count
+        Comment.LIKELABEL.text = "\(likeNumber)"
+        
+        if postData.isLiked {
+            let buttonImage = UIImage(named: "like_exist")
+            Comment.LIKEBUTTON.setImage(buttonImage, for: .normal)
+        } else {
+            let buttonImage = UIImage(named: "like_none")
+            Comment.LIKEBUTTON.setImage(buttonImage, for: .normal)
+        }
+    }
+    
+    @objc func LikeButton(_ sender: UIButton, forEvent event: UIEvent) {
         print("DEBUG_PRINT: likeボタンがタップされました。")
 
         // タップされたセルのインデックスを求める

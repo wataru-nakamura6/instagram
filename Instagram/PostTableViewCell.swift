@@ -15,7 +15,16 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
-
+    @IBOutlet weak var CommentButton: UIButton!
+    //@IBAction func CommentButton(_ sender: Any) {
+    //    print("DEBUG_PRINT: likeボタンがタップされました。")
+        
+    //    let Comment = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
+    //    self.present(Comment, animated: true, completion: nil)
+    //}
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
