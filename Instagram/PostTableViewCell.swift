@@ -15,7 +15,9 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var CommentButton: UIButton!
+    @IBOutlet weak var CtextView: UITextView!
     //@IBAction func CommentButton(_ sender: Any) {
     //    print("DEBUG_PRINT: likeボタンがタップされました。")
         
@@ -23,7 +25,12 @@ class PostTableViewCell: UITableViewCell {
     //    self.present(Comment, animated: true, completion: nil)
     //}
     
-    
+    func CtextView(_ CtextView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let existingLines = CtextView.text.components(separatedBy: .newlines)//既に存在する改行数
+        let newLines = text.components(separatedBy: .newlines)//新規改行数
+        let linesAfterChange = existingLines.count + newLines.count - 1 //最終改行数。-1は編集したら必ず1改行としてカウントされるため。
+        return linesAfterChange <= 3
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,6 +45,7 @@ class PostTableViewCell: UITableViewCell {
     
     // PostDataの内容をセルに表示
     func setPostData(_ postData: PostData) {
+        CtextView.textContainer.maximumNumberOfLines = 3
         // 画像の表示
         postImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
         let imageRef = Storage.storage().reference().child(Const.ImagePath).child(postData.id + ".jpg")
@@ -54,10 +62,24 @@ class PostTableViewCell: UITableViewCell {
             let dateString = formatter.string(from: date)
             self.dateLabel.text = dateString
         }
+        
+        //allCommentは最初は空である
+        var allComment = ""
+        //postData.commentsの中から要素をひとつずつ取り出すのを繰り返す、というのがcomment
+        for comment in postData.Comment{
+            //comment + comment = allCommentである
+            allComment += comment
+            //commentLabelに表示するのはallComment（commentを足していったもの）である
+            self.CtextView.text = allComment
+        }
 
         // いいね数の表示
         let likeNumber = postData.likes.count
         likeLabel.text = "\(likeNumber)"
+        
+        //コメントの数
+        let commentNumber = postData.Comment.count
+        commentLabel.text = "\(commentNumber)"
 
         // いいねボタンの表示
         if postData.isLiked {

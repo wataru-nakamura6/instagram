@@ -1,14 +1,14 @@
 //
-//  PostData.swift
+//  test.swift
 //  Instagram
 //
-//  Created by 中村航 on 2021/04/12.
+//  Created by 中村航 on 2021/04/20.
 //
 
 import UIKit
 import Firebase
 
-class PostData: NSObject {
+class test: NSObject {
     
     var id: String
     var name: String?
@@ -47,5 +47,3 @@ class PostData: NSObject {
         }
     }
 }
-
-

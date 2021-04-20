@@ -4,16 +4,17 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="482" id="KGk-i7-Jjw" customClass="PostTableViewCell" customModule="Instagram" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="373" height="482"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="570" id="KGk-i7-Jjw" customClass="PostTableViewCell" customModule="Instagram" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="570"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="373" height="482"/>
+                <rect key="frame" x="0.0" y="0.0" width="373" height="570"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHk-HW-QZT">
@@ -27,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9p6-cU-dGR">
-                        <rect key="frame" x="30" y="404.5" width="313" height="56.5"/>
+                        <rect key="frame" x="30" y="404.5" width="313" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -64,6 +65,19 @@
                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button" image="pencil" catalog="system"/>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYX-Cy-rc6">
+                        <rect key="frame" x="180" y="373.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJS-NL-kh1">
+                        <rect key="frame" x="10" y="435" width="353" height="125"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="textColor" systemColor="labelColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="9p6-cU-dGR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="2Kr-pU-rGq"/>
@@ -71,33 +85,46 @@
                     <constraint firstAttribute="trailingMargin" secondItem="uit-Tj-jNZ" secondAttribute="trailing" constant="10" id="ALK-OO-aKP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Rcw-Y9-dGP" secondAttribute="trailing" id="CLO-fE-9Fw"/>
                     <constraint firstItem="Ftg-gg-8YW" firstAttribute="top" secondItem="Rcw-Y9-dGP" secondAttribute="bottom" constant="10" id="CgJ-4e-syh"/>
+                    <constraint firstAttribute="bottom" secondItem="VJS-NL-kh1" secondAttribute="bottom" constant="10" id="Eda-Yw-CWA"/>
                     <constraint firstItem="YHk-HW-QZT" firstAttribute="centerY" secondItem="Ftg-gg-8YW" secondAttribute="centerY" id="K0G-rj-xgC"/>
+                    <constraint firstItem="VJS-NL-kh1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="OGW-0b-l9n"/>
                     <constraint firstItem="Ftg-gg-8YW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Pgx-ps-EKY"/>
+                    <constraint firstItem="sYX-Cy-rc6" firstAttribute="centerY" secondItem="ZX7-zt-eZP" secondAttribute="centerY" id="PjA-we-cSI"/>
                     <constraint firstItem="Rcw-Y9-dGP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Qjs-4A-gqJ"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="9p6-cU-dGR" secondAttribute="bottom" constant="10" id="StY-9v-anb"/>
                     <constraint firstItem="Rcw-Y9-dGP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="boX-nm-gpO"/>
                     <constraint firstItem="ZX7-zt-eZP" firstAttribute="top" secondItem="Rcw-Y9-dGP" secondAttribute="bottom" constant="10" id="cwM-hz-A25"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9p6-cU-dGR" secondAttribute="trailing" constant="10" id="eOz-QP-xXO"/>
+                    <constraint firstItem="VJS-NL-kh1" firstAttribute="top" secondItem="9p6-cU-dGR" secondAttribute="bottom" constant="10" id="mRm-CC-CAE"/>
                     <constraint firstItem="YHk-HW-QZT" firstAttribute="leading" secondItem="Ftg-gg-8YW" secondAttribute="trailing" constant="10" id="nQq-h7-j2r"/>
                     <constraint firstItem="ZX7-zt-eZP" firstAttribute="leading" secondItem="YHk-HW-QZT" secondAttribute="trailing" constant="10" id="oLr-jb-lE4"/>
                     <constraint firstItem="uit-Tj-jNZ" firstAttribute="leading" secondItem="ZX7-zt-eZP" secondAttribute="trailing" constant="10" id="tc0-Ei-HPN"/>
                     <constraint firstItem="uit-Tj-jNZ" firstAttribute="centerY" secondItem="Ftg-gg-8YW" secondAttribute="centerY" id="tqp-ns-I2P"/>
+                    <constraint firstItem="sYX-Cy-rc6" firstAttribute="leading" secondItem="ZX7-zt-eZP" secondAttribute="trailing" constant="10" id="upH-u8-mET"/>
+                    <constraint firstAttribute="trailing" secondItem="VJS-NL-kh1" secondAttribute="trailing" constant="10" id="ywH-BJ-tz6"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="CommentButton" destination="ZX7-zt-eZP" id="Prh-Jr-Ks4"/>
+                <outlet property="CtextView" destination="VJS-NL-kh1" id="d0B-3O-yyJ"/>
                 <outlet property="captionLabel" destination="9p6-cU-dGR" id="bTh-Wy-yC7"/>
+                <outlet property="commentLabel" destination="sYX-Cy-rc6" id="ALH-T7-gEY"/>
                 <outlet property="dateLabel" destination="uit-Tj-jNZ" id="n6S-GR-oKN"/>
                 <outlet property="likeButton" destination="Ftg-gg-8YW" id="eDv-z1-gyI"/>
                 <outlet property="likeLabel" destination="YHk-HW-QZT" id="DF2-SW-lqP"/>
                 <outlet property="postImageView" destination="Rcw-Y9-dGP" id="dhg-eM-wV3"/>
             </connections>
-            <point key="canvasLocation" x="163.04347826086959" y="150"/>
+            <point key="canvasLocation" x="163.04347826086959" y="179.46428571428569"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="like_none" width="40" height="40"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

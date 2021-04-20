@@ -28,42 +28,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    var postDataToSend: PostData?
+    
     @objc func commentButton(_ sender: UIButton, forEvent event: UIEvent) {
         print("DEBUG_PRINT: commentボタンがタップされました。")
         let touch = event.allTouches?.first
         let point = touch!.location(in: self.tableView)
         let indexPath = tableView.indexPathForRow(at: point)
+        
         // 配列からタップされたインデックスのデータを取り出す
         let postData = postArray[indexPath!.row]
-        
-        let Comment = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
-        self.present(Comment, animated: true, completion: nil)
-        
-        Comment.CAPTIONLABEL.text = "\(postData.name!) : \(postData.caption!)"
-        
-        Comment.DATELABEL.text = ""
-        if let date = postData.date {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-            let dateString = formatter.string(from: date)
-            Comment.DATELABEL.text = dateString
-        }
-        
-        Comment.POSTIMAGEVIEW.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        let imageRef = Storage.storage().reference().child(Const.ImagePath).child(postData.id + ".jpg")
-        Comment.POSTIMAGEVIEW.sd_setImage(with: imageRef)
-
-        let likeNumber = postData.likes.count
-        Comment.LIKELABEL.text = "\(likeNumber)"
-        
-        if postData.isLiked {
-            let buttonImage = UIImage(named: "like_exist")
-            Comment.LIKEBUTTON.setImage(buttonImage, for: .normal)
-        } else {
-            let buttonImage = UIImage(named: "like_none")
-            Comment.LIKEBUTTON.setImage(buttonImage, for: .normal)
+        postDataToSend = postData
+        let CommentVC = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
+        self.present(CommentVC, animated: true, completion: nil)
+        if let postData = postDataToSend {
+            CommentVC.setPostData(postData)
         }
     }
+    
+
     
     @objc func LikeButton(_ sender: UIButton, forEvent event: UIEvent) {
         print("DEBUG_PRINT: likeボタンがタップされました。")

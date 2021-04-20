@@ -10,9 +10,7 @@ import Firebase
 import FirebaseUI
 import SVProgressHUD
 
-class CommentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var CommentArray: [CommentData] = []
-    var listener: ListenerRegistration?
+class CommentViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var POSTIMAGEVIEW: UIImageView!
     @IBOutlet weak var LIKELABEL: UILabel!
@@ -20,59 +18,86 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var CAPTIONLABEL: UILabel!
     @IBOutlet weak var LIKEBUTTON: UIButton!
     @IBOutlet weak var CtextField: UITextField!
+    @IBOutlet weak var CtextView: UITextView!
+    @IBAction func CtextField(_ sender: Any) {
+        CtextField.text = (sender as AnyObject).text
+    }
     
-    @IBOutlet weak var tableView: UITableView!
+    var postDataReceived: PostData?
+
+    func setPostData(_ postData: PostData) {
+        postDataReceived = postData
+    }
     
     @IBAction func CButton(_ sender: Any) {
-        if CtextField.text != ""{
-        let commentRef = Firestore.firestore().collection(Const.CommentPath).document()
-        let Cname = Auth.auth().currentUser?.displayName
-        let commentDic = [
-            "Cname": Cname!,
-            "Commet": self.CtextField.text!,
-            "Cdate": FieldValue.serverTimestamp(),
-            ] as [String : Any]
-        commentRef.setData(commentDic)
-        // HUDで投稿完了を表示する
-            SVProgressHUD.showSuccess(withStatus: "投稿しました")
-        // 投稿処理が完了したので先頭画面に戻る
-            self.viewDidLoad()
-            CtextField.text = ""
-        }else if CtextField.text == ""{
-            SVProgressHUD.showSuccess(withStatus: "コメントを入力してください")
+        guard let postData = postDataReceived else {
             return
         }
+        
+        let Cname = Auth.auth().currentUser?.displayName
+    
+        if let CommentText = self.CtextField.text{
+            postData.Comment.append("@\(Cname!)-\(CommentText)\n")
+            SVProgressHUD.showSuccess(withStatus: "投稿しました")
+        }
+        
+        let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
+        let commentDictionary = ["Comment": postData.Comment]
+        postRef.updateData(commentDictionary)
+        
+        var allcomment = ""
+        for comment in postData.Comment{
+            allcomment += comment
+            self.CtextView.text = allcomment
+            print("DEBUG_PRINT: comment")
+        }
+        CtextField.text = ""
+        self.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("DEBUG_PRINT: viewWillAppear")
         // ログイン済みか確認
-        if Auth.auth().currentUser != nil {
-            // listenerを登録して投稿データの更新を監視する
-            let commentsRef = Firestore.firestore().collection(Const.CommentPath).order(by: "date", descending: false)
-            listener = commentsRef.addSnapshotListener() { (querySnapshot, error) in
-                if let error = error {
-                    print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
-                    return
-                }
-                // 取得したdocumentをもとにPostDataを作成し、postArrayの配列にする。
-                self.CommentArray = querySnapshot!.documents.map { document in
-                    print("DEBUG_PRINT: document取得 \(document.documentID)")
-                    let comment = CommentData(document: document)
-                    return comment
-                }
-                // TableViewの表示を更新する
-                self.tableView.reloadData()
-            }
+        guard let postData = postDataReceived else {
+            return
         }
-    }
+        CAPTIONLABEL.text = "\(postData.name!) : \(postData.caption!)"
+        
+       DATELABEL.text = ""
+        if let date = postData.date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let dateString = formatter.string(from: date)
+            DATELABEL.text = dateString
+        }
+        
+        POSTIMAGEVIEW.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        let imageRef = Storage.storage().reference().child(Const.ImagePath).child(postData.id + ".jpg")
+        POSTIMAGEVIEW.sd_setImage(with: imageRef)
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("DEBUG_PRINT: viewWillDisappear")
-        // listenerを削除して監視を停止する
-        listener?.remove()
+        let likeNumber = postData.likes.count
+        LIKELABEL.text = "\(likeNumber)"
+        
+        if postData.isLiked {
+            let buttonImage = UIImage(named: "like_exist")
+            LIKEBUTTON.setImage(buttonImage, for: .normal)
+        } else {
+            let buttonImage = UIImage(named: "like_none")
+            LIKEBUTTON.setImage(buttonImage, for: .normal)
+        }
+        
+        CtextField.becomeFirstResponder()
+        
+        //allCommentは最初は空である
+        var allComment = ""
+        //postData.commentsの中から要素をひとつずつ取り出すのを繰り返す、というのがcomment
+        for comment in postData.Comment{
+            //comment + comment = allCommentである
+            allComment += comment
+            //commentLabelに表示するのはallComment（commentを足していったもの）である
+            self.CtextView.text = allComment
+        }
     }
     
     @objc func dismissKeyboard(){
@@ -84,22 +109,11 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        let nib = UINib(nibName: "CommentTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "CCell")
+        self.CtextField.delegate = self
+        CtextField.returnKeyType = .done
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CommentArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CCell", for: indexPath) as! CommentTableViewCell
-        cell.setCommentData(CommentArray[indexPath.row])
-        return cell
-    }
+
     
 
     /*
