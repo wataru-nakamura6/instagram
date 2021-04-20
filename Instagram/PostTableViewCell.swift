@@ -65,13 +65,17 @@ class PostTableViewCell: UITableViewCell {
         
         //allCommentは最初は空である
         var allComment = ""
+        
+        if postData.Comment.count == 0{
         CtextView.text = ""
+        }else{
         //postData.commentsの中から要素をひとつずつ取り出すのを繰り返す、というのがcomment
-        for comment in postData.Comment{
-            //comment + comment = allCommentである
-            allComment += comment
-            //commentLabelに表示するのはallComment（commentを足していったもの）である
-            self.CtextView.text = allComment
+            for comment in postData.Comment{
+            //comment + comment = allCommentであ
+                allComment += comment
+            //commentLabelに表示するのはallComment（commentを足していったもの）であ
+                self.CtextView.text = allComment
+            }
         }
 
         // いいね数の表示
