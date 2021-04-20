@@ -16,7 +16,7 @@ class SettingViewController: UIViewController {
     @IBAction func handleChangeButton(_ sender: Any) {
         if let displayName = displayNameTextField.text{
             if displayName.isEmpty{
-                SVProgressHUD.showError(withStatus: "サインインに失敗しました。")
+                SVProgressHUD.showError(withStatus: "表示名を入力して下さい。")
                 return
             }
             let user = Auth.auth().currentUser

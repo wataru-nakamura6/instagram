@@ -65,6 +65,7 @@ class PostTableViewCell: UITableViewCell {
         
         //allCommentは最初は空である
         var allComment = ""
+        CtextView.text = ""
         //postData.commentsの中から要素をひとつずつ取り出すのを繰り返す、というのがcomment
         for comment in postData.Comment{
             //comment + comment = allCommentである
